@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.interview.R
+import com.example.interview.room.Category
 
-class HomeAdapter(private var list: List<String>) :
+class HomeAdapter(private var list: List<Category>) :
     RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     //this method is returning the view for each item in the list
@@ -17,15 +18,15 @@ class HomeAdapter(private var list: List<String>) :
     }
 
     class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bindItems(user: String) {
+        fun bindItems(category: Category) {
             val textViewName = itemView.findViewById(R.id.textView) as TextView
-            textViewName.text = user
+            textViewName.text = category.title
         }
 
     }
 
     //this method is binding the data on the list
-    override fun onBindViewHolder(holder: HomeAdapter.HomeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         holder.bindItems(list[position])
     }
 
