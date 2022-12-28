@@ -4,13 +4,14 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
 
 @Dao
 interface CategoryDao {
 
-//    @Query("select * from home_table order by priority desc")
-    @Query("select * from category_table")
+    //    @Query("select * from home_table order by priority desc")
+    @Query("select * from category")
     fun getAllCategories(): List<Category>
 
     @Insert
@@ -21,4 +22,9 @@ interface CategoryDao {
 
     @Delete
     suspend fun deleteBook(book: Category)
+
+
+    @Transaction
+    @Query("SELECT * FROM category")
+    fun getCategoryItems(): List<CategoryItem>
 }

@@ -6,10 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = [Category::class], version = 1)
+@Database(entities = [Category::class,Item::class], version = 1)
 abstract class InterviewDatabase : RoomDatabase() {
 
     abstract fun homeDao(): CategoryDao
+    abstract fun itemDao(): ItemDao
 
     companion object {
         private var instance: InterviewDatabase? = null
@@ -17,11 +18,16 @@ abstract class InterviewDatabase : RoomDatabase() {
         @Synchronized
         fun getInstance(ctx: Context): InterviewDatabase {
             if(instance == null)
-                instance = Room.databaseBuilder(ctx.applicationContext, InterviewDatabase::class.java,
-                    "interview_database")
-                    .fallbackToDestructiveMigration()
-                    .addCallback(roomCallback)
-                    .build()
+//                instance = Room.databaseBuilder(ctx.applicationContext, InterviewDatabase::class.java,
+//                    "interview_database")
+//                    .fallbackToDestructiveMigration()
+//                    .addCallback(roomCallback)
+//                    .build()
+
+                instance = Room.databaseBuilder(ctx.applicationContext, InterviewDatabase::class.java, "sqlite.db")
+                        .createFromAsset("database/sqlite.db")
+                        .fallbackToDestructiveMigration()
+                        .build()
 
             return instance!!
 

@@ -13,7 +13,7 @@ import com.example.interview.room.InterviewDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
     private lateinit var categoryDao:CategoryDao
 
@@ -36,11 +36,11 @@ class MainActivity : AppCompatActivity() {
 
             lifecycleScope.launch (Dispatchers.IO) {
                 //Insert
-                Log.i("MyTAG", "*****     Inserting 3 Books     **********")
-                categoryDao.insertCategory(Category(3, "Java", "Alex",0))
-                categoryDao.insertCategory(Category(4, "PHP", "Mike",1))
-                categoryDao.insertCategory(Category(5, "Kotlin", "Amelia",2))
-                Log.i("MyTAG", "*****     Inserted 3 categories       **********")
+//                Log.i("MyTAG", "*****     Inserting 3 Books     **********")
+//                categoryDao.insertCategory(Category(3, "Java", "Alex",0))
+//                categoryDao.insertCategory(Category(4, "PHP", "Mike",1))
+//                categoryDao.insertCategory(Category(5, "Kotlin", "Amelia",2))
+//                Log.i("MyTAG", "*****     Inserted 3 categories       **********")
 
                 //Query
                 val categoryList = categoryDao.getAllCategories()
